@@ -2,7 +2,7 @@ from ga4_churn_predictor.config import TEST_SIZE
 from ga4_churn_predictor.config import RANDOM_STATE
 from ga4_churn_predictor.config import TARGET_FEATURE
 from ga4_churn_predictor.config import CATEGORICAL_FEATURES
-from ga4_churn_predictor.config import NUMERICAL_FEATURES
+from ga4_churn_predictor.config import RAW_NUMERICAL_FEATURES
 from ga4_churn_predictor.config import DATA_PATH
 from ga4_churn_predictor.config import BIGQUERY_PROJECT_ID
 from ga4_churn_predictor.config import GOOGLE_APPLICATION_CREDENTIALS
@@ -32,7 +32,9 @@ if __name__ == "__main__":
 
 dataframe = pandas.read_parquet(DATA_PATH)
 
-X = dataframe[NUMERICAL_FEATURES + CATEGORICAL_FEATURES]
+X = dataframe[RAW_NUMERICAL_FEATURES + CATEGORICAL_FEATURES]
 y = dataframe[TARGET_FEATURE]
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=RANDOM_STATE, test_size=TEST_SIZE)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, random_state=RANDOM_STATE, test_size=TEST_SIZE
+)
