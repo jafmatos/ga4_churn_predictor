@@ -1,5 +1,8 @@
-key
+.env
+key/*
 dataset/raw/*
+dataset/processed/*
+models/*
 
 # Python-generated files
 __pycache__/
