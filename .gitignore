@@ -1,8 +1,8 @@
-.env
-key/*
+*.db
+key
 dataset/raw/*
-dataset/processed/*
-models/*
+.env
+.env.streamlit
 
 # Python-generated files
 __pycache__/

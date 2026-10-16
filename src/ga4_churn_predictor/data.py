@@ -22,6 +22,7 @@ def fetch_and_save_data():
     query = SQL_QUERY_PATH.read_text(encoding="utf-8")
 
     dataframe = gbq_client.query(query).to_dataframe()
+    dataframe = dataframe.drop_duplicates(subset="id_usuario")
     dataframe.to_parquet(DATA_PATH, index=False)
 
     print(f"Data fetched and saved to {DATA_PATH}")

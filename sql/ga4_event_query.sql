@@ -82,10 +82,10 @@ SELECT
   metricas_interacoes_por_usuario.total_interacoes_select_promotion AS total_interacoes_select_promotion,
   metricas_interacoes_por_usuario.total_interacoes_add_to_cart AS total_interacoes_add_to_cart,
   metricas_interacoes_por_usuario.total_interacoes_begin_checkout AS total_interacoes_begin_checkout,
-  metricas_interacoes_por_usuario.total_interacoes_quinzena_1 AS total_interacoes_quinzena_1,
-  metricas_interacoes_por_usuario.total_interacoes_quinzena_2 AS total_interacoes_quinzena_2,
-  metricas_interacoes_por_usuario.total_interacoes_quinzena_3 AS total_interacoes_quinzena_3,
-  metricas_interacoes_por_usuario.total_interacoes_quinzena_4 AS total_interacoes_quinzena_4,
+  COALESCE(metricas_interacoes_por_usuario.total_interacoes_quinzena_1, 0) AS total_interacoes_quinzena_1,
+  COALESCE(metricas_interacoes_por_usuario.total_interacoes_quinzena_2, 0) AS total_interacoes_quinzena_2,
+  COALESCE(metricas_interacoes_por_usuario.total_interacoes_quinzena_3, 0) AS total_interacoes_quinzena_3,
+  COALESCE(metricas_interacoes_por_usuario.total_interacoes_quinzena_4, 0) AS total_interacoes_quinzena_4,
   IF (total_interacoes_por_usuario_futuro.total_interacoes IS NULL, 1, 0) AS churn
 FROM `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*` events
 LEFT JOIN metricas_por_usuario ON metricas_por_usuario.id_usuario = events.user_pseudo_id

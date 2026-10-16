@@ -5,9 +5,9 @@ from pydantic import BaseModel
 class ChurnInput(BaseModel):
     total_pedidos: int = Field(..., gt=0, description="Total de pedidos")
     receita_total_em_usd: float = Field(
-        ..., gt=0, description="Receita total em dólares"
+        ..., ge=0, description="Receita total em dólares"
     )
-    ticket_medio_em_usd: float = Field(..., gt=0, description="Ticket médio em dólares")
+    ticket_medio_em_usd: float = Field(..., ge=0, description="Ticket médio em dólares")
     recencia_dias: int = Field(..., ge=0, description="Dias desde o último pedido")
     dias_desde_primeiro_pedido: int = Field(
         ..., ge=0, description="Dias desde o primeiro pedido"

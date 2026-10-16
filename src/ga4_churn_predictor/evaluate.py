@@ -1,6 +1,5 @@
 from ga4_churn_predictor.data import y_train
 from ga4_churn_predictor.data import X_train
-from ga4_churn_predictor.config import PROCESSED_DATA_DIR
 from sklearn.model_selection import cross_validate
 from sklearn.model_selection import cross_val_score
 from sklearn.metrics import roc_auc_score
@@ -14,13 +13,6 @@ import joblib
 model = joblib.load(MODEL_PATH)
 
 y_pred = model.predict(X_test)
-
-dataframe_predicted = X_test.copy()
-dataframe_predicted["churn"] = y_pred
-
-dataframe_predicted.to_csv(
-    PROCESSED_DATA_DIR / "users_predicted.csv", index=False
-)
 
 print(
     f"""

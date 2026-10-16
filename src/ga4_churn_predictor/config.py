@@ -28,11 +28,17 @@ RAW_NUMERICAL_FEATURES = [
 ]
 
 MODEL_NUMERICAL_FEATURES = [
+    "total_pedidos",
+    "receita_total_em_usd",
     "ticket_medio_em_usd",
     "recencia_dias",
     "dias_desde_primeiro_pedido",
     "tempo_relacionamento_dias",
     "total_itens_comprados",
+    "total_interacoes_quinzena_1",
+    "total_interacoes_quinzena_2",
+    "total_interacoes_quinzena_3",
+    "total_interacoes_quinzena_4",
     "tendencia_interacoes",
     "media_dias_entre_pedidos",
 ]

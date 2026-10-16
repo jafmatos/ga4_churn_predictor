@@ -24,6 +24,9 @@ class MLService:
 
         garbage_colector.collect()
 
+    def get_is_model_loaded(self) -> bool:
+        return self.model is not None
+
     def predict_single(self, data: ChurnInput) -> ChurnOutput:
         if self.model is None:
             raise RuntimeError("O modelo não foi carregado")

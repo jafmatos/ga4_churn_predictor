@@ -8,6 +8,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import API_TITLE, API_VERSION, API_DESCRIPTION
 from app.routers.predict import router as predict_router
+from app.routers.data import router as data_router
+from app.routers.health import router as health_router
 
 
 @asynccontextmanager
@@ -55,6 +57,16 @@ def handle_runtime_error(request: Request, exception: RuntimeError):
     )
 
 
+@app.exception_handler(ValueError)
+def handle_value_error(request: Request, exception: ValueError):
+    print(exception.with_traceback(None))
+
+    return JSONResponse(
+        status_code=status.HTTP_400_BAD_REQUEST,
+        content={"detail": str(exception)},
+    )
+
+
 @app.exception_handler(Exception)
 def handle_exception(request: Request, exception: Exception):
     print(exception.with_traceback(None))
@@ -72,4 +84,7 @@ def handle_not_found_error(request: Request, exception: Exception):
         content={"detail": "Recurso não encontrado"},
     )
 
+
+app.include_router(health_router)
+app.include_router(data_router)
 app.include_router(predict_router)
